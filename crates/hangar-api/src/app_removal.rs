@@ -17,6 +17,7 @@
 //! - `toml_table`: one `[projects.'<path>']` table removed from a SHARED toml file; restore re-inserts exactly it (Codex `config.toml`).
 //! - `db_rows`: rows deleted from a SHARED sqlite table; restore re-INSERTs exactly those rows (Hermes `state.db`).
 
+use std::ffi::OsString;
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::time::{SystemTime, UNIX_EPOCH};
@@ -82,6 +83,34 @@ fn norm_path(path: &Path) -> String {
         .to_string()
 }
 
+/// Resolve the deepest existing ancestor, then re-attach any missing tail. This keeps
+/// containment comparisons correct on Windows runners where TEMP may use an 8.3 alias
+/// (`RUNNER~1`) while USERPROFILE uses the long spelling. Resolving the ancestor also
+/// prevents an in-profile junction from disguising an out-of-profile restore target.
+fn canonicalize_with_missing_tail(path: &Path) -> PathBuf {
+    let mut cursor = path;
+    let mut missing: Vec<OsString> = Vec::new();
+
+    while !cursor.exists() {
+        let Some(name) = cursor.file_name() else {
+            return path.to_path_buf();
+        };
+        missing.push(name.to_os_string());
+        let Some(parent) = cursor.parent() else {
+            return path.to_path_buf();
+        };
+        cursor = parent;
+    }
+
+    let Ok(mut resolved) = fs::canonicalize(cursor) else {
+        return path.to_path_buf();
+    };
+    for component in missing.into_iter().rev() {
+        resolved.push(component);
+    }
+    resolved
+}
+
 fn hex_val(b: u8) -> Option<u8> {
     match b {
         b'0'..=b'9' => Some(b - b'0'),
@@ -122,14 +151,16 @@ fn decode_file_uri(uri: &str) -> Option<PathBuf> {
 /// per-app `.gemini`/`.cursor`/`.hermes` segment check this blocks a tampered manifest from
 /// redirecting a restore to a system/program directory.
 fn is_managed_registry_path(path: &Path) -> bool {
-    let target = norm_path(path);
+    let target = norm_path(&canonicalize_with_missing_tail(path));
     if target.is_empty() {
         return false;
     }
     let mut roots: Vec<String> = Vec::new();
     for key in ["USERPROFILE", "APPDATA", "LOCALAPPDATA", "HOME"] {
         if let Ok(value) = std::env::var(key) {
-            roots.push(norm_path(Path::new(&value)));
+            roots.push(norm_path(&canonicalize_with_missing_tail(Path::new(
+                &value,
+            ))));
         }
     }
     let under_user_area = roots.iter().any(|root| {
@@ -1447,6 +1478,20 @@ pub fn restore_app_removal_by_id(backup_dir: &Path, id: &str) -> Result<(), Stri
 mod tests {
     use super::*;
     use tempfile::tempdir;
+
+    #[test]
+    fn canonicalizes_an_existing_parent_before_comparing_a_missing_restore_target() {
+        let dir = tempdir().unwrap();
+        let managed = dir.path().join(".gemini").join("config").join("projects");
+        fs::create_dir_all(&managed).unwrap();
+        let missing = managed.join("project.json");
+
+        let resolved = canonicalize_with_missing_tail(&missing);
+        assert_eq!(
+            resolved,
+            fs::canonicalize(&managed).unwrap().join("project.json")
+        );
+    }
 
     #[test]
     fn file_remove_then_restore_roundtrips() {
