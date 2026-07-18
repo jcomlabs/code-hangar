@@ -63,7 +63,7 @@ product.
 **Overlay or description field:**
 
 - Baseline: `843530c`
-- Product candidate: `e831c14dfa15291dda152d7742766221438feaa3`
+- Public release candidate: `c5cabbec8f5127fdf126d3ddb5e4c72a638e0931`
 - Codex session selected for `/feedback`: `019f3315-12ff-7071-8534-04fe50ed534e`
 - Candidate-finalization session: `019f7226-c01a-71d3-9850-4c6f3b990ef2`
 
@@ -135,8 +135,9 @@ Developer Tools submission for OpenAI Build Week 2026. The demo shows local
 evidence reconstruction, secret blocking, GPT-5.6 in Codex consuming scoped
 Code Hangar context over MCP, and a small reversible correction.
 
-Repository / judge access: pending owner authorization
-Build Week delta: 843530c..e831c14dfa15291dda152d7742766221438feaa3
+Repository / judge access: https://github.com/jcomlabs/code-hangar
+Public release candidate: c5cabbec8f5127fdf126d3ddb5e4c72a638e0931
+Private Build Week provenance: 843530c..e831c14dfa15291dda152d7742766221438feaa3
 Codex session selected for /feedback: 019f3315-12ff-7071-8534-04fe50ed534e
 ```
 

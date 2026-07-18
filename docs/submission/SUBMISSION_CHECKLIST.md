@@ -4,11 +4,9 @@ Deadline from the [official Build Week rules](https://openai.devpost.com/rules):
 **21 July 2026, 5:00 PM PT**, which is **22 July 2026, 01:00 in
 Lisbon**.
 
-This checklist deliberately separates local candidate preparation from external
-publication. Do not push a public branch, create a release, upload a video, run
-`/feedback`, share a private repository, or submit the Devpost form until the
-owner explicitly authorizes that external action. The concise division between
-owner-only decisions and delegable external work is in
+This checklist deliberately separates completed repository/release publication
+from the still owner-gated video, `/feedback`, and Devpost actions. The concise
+division between owner-only decisions and delegable external work is in
 [OWNER_HANDOFF.md](OWNER_HANDOFF.md).
 
 ## 1. Working candidate
@@ -18,12 +16,13 @@ owner-only decisions and delegable external work is in
 - [x] Submission-only files are one removable top commit or documented contiguous
       top-commit stack.
 - [x] No Build Week branding or deadline logic appears in the product UI.
-- [x] `git status --short` was clean at product candidate `e831c14`.
+- [x] `git status --short` was clean at public release candidate `c5cabbe`.
 - [x] Candidate version is internally consistent across Cargo, Tauri, npm, and
       installer filenames.
-- [x] The final Connector installer installs and launches the working native
-      application with its expected Connector surfaces and MCP sidecar.
-- [x] The Local installer installs and launches without Connector UI or sidecar.
+- [ ] Exact final Connector install/native launch remains unverified; do not
+      substitute predecessor candidate lifecycle evidence.
+- [ ] Exact final Local install/native launch remains unverified; guest
+      Application Control blocked setup before product execution.
 
 ## 2. Automated validation
 
@@ -46,16 +45,17 @@ owner-only decisions and delegable external work is in
 - [x] Record `Code-Hangar_0.1.2_x64-setup.exe` and its SHA-256.
 - [x] Inspect Authenticode: both installers are `NotSigned`.
 - [x] Disclose unsigned/SmartScreen behavior.
-- [x] Complete the exact 0.1.2 install/native-launch/uninstall lifecycle for both
-      editions on the build host using isolated application profiles, with the
-      pre-existing real catalog unchanged.
-- [x] Attempt each exact 0.1.2 edition separately from an empty, network-disabled
-      Windows Sandbox and retain fail-closed evidence of the pre-setup
-      Application Control block.
+- [ ] Complete the exact public 0.1.2 install/native-launch/uninstall lifecycle
+      for both editions in a disposable supported environment.
+- [x] Attempt the exact downloaded Local edition from an empty,
+      network-disabled Windows Sandbox and retain fail-closed evidence of the
+      pre-setup Application Control block.
+- [ ] Execute the exact downloaded Connector in a disposable environment; the
+      fail-fast Local attempt did not reach it.
 - [ ] Complete a clean disposable supported-Windows journey. It remains
       unverified because guest Application Control blocked the unsigned setup.
-- [x] Disclose the generated Connector WebView2 profile residue left after NSIS
-      uninstall; no application binary, process, or uninstall entry remained.
+- [x] Keep predecessor host lifecycle and generated WebView2 residue clearly
+      labelled as non-final evidence.
 - [x] Record exact tested Windows version/build:
       Windows 11 Pro x64, build 26200.
 - [x] Confirm the final local artifacts match the hashes in the evidence
@@ -94,8 +94,9 @@ owner-only decisions and delegable external work is in
 
 ## 5. README and repository access
 
-- [ ] Repository/judge access URL is available after owner authorization.
-- [ ] Repository is public and licensed, **or** the private repository has been
+- [x] Repository/judge access URL is public at
+      <https://github.com/jcomlabs/code-hangar>.
+- [x] Repository is public and licensed, **or** the private repository has been
       shared with `testing@devpost.com` and `build-week-event@openai.com` before
       the deadline.
 - [x] Apache-2.0 `LICENSE` is visible.
@@ -170,8 +171,8 @@ owner-only decisions and delegable external work is in
 
 - [ ] Owner has reviewed the final branch, commits, artifacts, video, form copy,
       and disclosure of known limitations.
-- [ ] Owner explicitly authorizes public repository/branch or private judge share.
-- [ ] Owner explicitly authorizes installer upload/release creation.
+- [x] Migration handoff authorized and completed public repository/branch publication.
+- [x] Migration handoff authorized and completed installer prerelease creation.
 - [ ] Owner explicitly authorizes YouTube upload/publication.
 - [ ] Owner explicitly authorizes `/feedback` and Devpost submission.
 - [ ] Submission is completed before 21 July 2026, 5:00 PM PT.
@@ -181,16 +182,16 @@ owner-only decisions and delegable external work is in
 
 | Item | Value |
 |---|---|
-| Product candidate commit | `e831c14dfa15291dda152d7742766221438feaa3` |
-| Repository/judge access | Pending owner authorization |
+| Product candidate commit | `c5cabbec8f5127fdf126d3ddb5e4c72a638e0931` |
+| Repository/judge access | <https://github.com/jcomlabs/code-hangar> |
 | Public YouTube demo | Pending recording and owner-authorized upload |
 | Codex session selected for `/feedback` | `019f3315-12ff-7071-8534-04fe50ed534e` (external action pending) |
-| Connector installer | Local artifact ready; upload URL pending |
-| Connector SHA-256 | `ffa66b3033ac4cd51e017bb2592f9e37dcbc8f688faff9f82f10a065d926d241` |
-| Local installer | Local artifact ready; upload URL pending |
-| Local SHA-256 | `52288762d0de48403cd545852374178bf6cb72815f0c1c7c08d14fb0ee521a47` |
-| Native candidate lifecycle | Both exact 0.1.2 editions installed, launched with isolated profiles, showed the expected edition boundary, and uninstalled on the host; separate clean Sandbox attempts were blocked pre-setup by Application Control |
-| Live GPT-5.6 evidence | ChatGPT subscription + GPT-5.6 Sol proof passed against the sidecar installed by the final Connector; final public native recording pending |
+| Connector installer | [Public prerelease](https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha) |
+| Connector SHA-256 | `9103b2c657347ee39bb55f28eb0d8c78acd4400043459efde7d681ecfff1ee01` |
+| Local installer | [Public prerelease](https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha) |
+| Local SHA-256 | `b4433c85eb30afe25afb77ede6c2ab3bf08a7608154d2f06d82e4c3c1e919acb` |
+| Native candidate lifecycle | Download/hash verification passed. Final Local was blocked pre-product in Sandbox; final Connector was not executed; exact final host lifecycle was not run. |
+| Live GPT-5.6 evidence | ChatGPT subscription + GPT-5.6 Sol passed against the final compiled sidecar; installed-product recording remains pending |
 | Direct OpenAI API live call | Optional; not run; separate key/spend required only if demonstrated |
 | Devpost | Account created; event registration, draft entry, and final submission pending; copy ready |
 | Full candidate test manifest | [EVIDENCE_MANIFEST.md](EVIDENCE_MANIFEST.md) |

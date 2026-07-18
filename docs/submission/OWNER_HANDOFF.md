@@ -1,32 +1,33 @@
 # Owner handoff: OpenAI Build Week
 
-This handoff separates work that is complete locally, work Codex may perform
-after explicit authorization, and decisions or attestations that must remain
-with the owner. No item in this document is evidence that an external action
-has already happened.
+This handoff separates completed work, remaining delegable work, and decisions
+or attestations that must remain with the owner. Repository and release
+publication were authorized by the migration handoff and are recorded below.
 
 ## Complete locally
 
 - The product candidate is isolated from the removable Build Week commit stack.
-- Local and Connector installers are packaged and hashed.
-- Both exact 0.1.2 installers completed install, native isolated-profile launch,
-  edition UI inspection, and uninstall on the build host. The real catalog was
-  verified unchanged; clean disposable-machine proof remains explicitly open.
-- The exact Local and Connector candidates were also attempted separately from
-  empty, network-disabled Windows Sandbox guests. Both hashes matched the final
-  artifacts; current guest Application Control blocked each unsigned installer
-  before setup/product execution, and the guests remained empty afterwards.
+- Local and Connector installers are packaged, published, downloaded afresh,
+  and hash-reverified against the public `SHA256SUMS`.
+- The exact final Local installer was attempted from an empty network-disabled
+  Windows Sandbox. Guest Application Control blocked it before setup/product
+  execution; clean start and final state passed. The fail-fast run did not
+  execute Connector, and exact final host lifecycle was deliberately not run to
+  preserve the existing installation and parallel sessions.
 - Automated product, security, edition-isolation, Rust, and GPT-5.6 contract
   checks pass.
 - A synthetic GPT-5.6 Sol run, authenticated by the owner's ChatGPT subscription,
-  read a disposable Code Hangar catalog through the MCP sidecar installed by the
-  final Connector.
+  read a disposable Code Hangar catalog through the final compiled Connector
+  sidecar.
 - The GPT-5.6 smoke is ephemeral, runs outside the project, and asserts that it
   creates zero Codex rollout files.
 - The accidental persisted smoke session was permanently deleted; its exact
   rollout file is absent, and the real Code Hangar discovery smoke still passes.
 - Devpost copy, judge quickstart, evidence manifest, demo script, and disclosure
   of limitations are ready in this directory.
+- The privacy-sanitized repository, isolated submission branch, protected
+  `main`, and unsigned prerelease are public at
+  <https://github.com/jcomlabs/code-hangar>.
 - A self-contained local handoff bundle is ready under
   `.local/submission-ready/code-hangar-build-week-20260718-01/`; it excludes the
   retained real-catalog backup and disposable application profiles, and includes
@@ -39,18 +40,14 @@ These cannot be inferred or approved by Codex:
 1. Join/register for OpenAI Build Week, confirm eligibility, accept the current
    Build Week and Devpost terms, and attest that the submission is truthful and
    yours.
-2. Choose repository access:
-   - authorize a public repository/branch; or
-   - keep it private and authorize judge access for the addresses required by
-     the current rules.
-3. Decide whether to ship the unsigned preview installers or provide a Windows
+2. Decide whether to keep the published unsigned preview installers or provide a Windows
    code-signing identity and authorize a signed rebuild.
-4. Approve the final screen recording after checking voice, identity, account,
+3. Approve the final screen recording after checking voice, identity, account,
    notification, path, and project-data privacy.
-5. Approve the public YouTube upload and the free test-build hosting location.
-6. Authorize the Codex `/feedback` transmission and approve the text attached to
+4. Approve the public YouTube upload.
+5. Authorize the Codex `/feedback` transmission and approve the text attached to
    the selected engineering Session ID.
-7. Review every final Devpost field and press the final submission button.
+6. Review every final Devpost field and press the final submission button.
 
 ## External work Codex can perform after explicit authorization
 
@@ -58,9 +55,6 @@ The owner does not need to do these steps manually, but each changes external
 state and therefore remains paused:
 
 - create or fill the unsubmitted Devpost draft;
-- push the isolated submission branch or create a private judge branch;
-- create a release and upload the approved installer artifacts;
-- share a private repository with the required judge accounts;
 - upload the approved video and test signed-out playback;
 - enter approved URLs, hashes, Session ID, and copy into Devpost.
 

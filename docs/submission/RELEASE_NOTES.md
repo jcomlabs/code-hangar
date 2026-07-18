@@ -31,16 +31,16 @@ than copied from an older release.
 
 ## Proof and owner-gated external actions
 
-A synthetic subscription-backed GPT-5.6 Sol + Code Hangar MCP proof has passed
-through the sidecar installed by the final Connector, including two scoped
-audited reads and temporary credential revocation. Both exact 0.1.2 editions
-also completed install, isolated-profile native launch, edition UI inspection,
-and uninstall on the build host. Clean disposable-machine proof and the final
-public installed-product video remain outstanding. Both exact candidates were
-attempted separately in empty, network-disabled Windows Sandbox guests, but the
-current guest Application Control policy blocked the unsigned installers before
-setup/product execution. A separately billed in-app OpenAI API call is optional
-and has not been run.
+A synthetic subscription-backed GPT-5.6 Sol + Code Hangar MCP proof passed
+against the final compiled sidecar, including two scoped audited reads,
+temporary credential revocation, and zero persisted Codex session files. The
+public assets were re-downloaded and their SHA-256 values matched the published
+manifest. Exact host lifecycle was not repeated for these release hashes. An
+empty network-disabled Windows Sandbox refused the final downloaded Local setup
+under guest Application Control before product execution; its fail-fast result
+left Connector unexecuted. Clean disposable-machine proof and the final public
+installed-product video remain outstanding. A separately billed in-app OpenAI
+API call is optional and has not been run.
 
 The privacy-sanitized source repository is public. This candidate does not claim
 `/feedback`, YouTube publication, or Devpost submission until the owner

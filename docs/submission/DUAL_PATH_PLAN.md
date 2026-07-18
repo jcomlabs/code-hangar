@@ -64,8 +64,8 @@ It performs an ephemeral, synthetic journey:
 9. revokes every temporary client credential and deletes the fixture; and
 10. retains only a sanitized, gitignored JSON result.
 
-The completed local result used Codex CLI 0.144.1, ChatGPT subscription auth,
-GPT-5.6 Sol, the sidecar installed by the final Connector, and the synthetic
+The completed final result used Codex CLI 0.144.1, ChatGPT subscription auth,
+GPT-5.6 Sol, the final compiled Connector sidecar, and the synthetic
 `Fixture Git-like Project`. No API key, OAuth token, persisted Codex session,
 personal project path, or personal project body was retained.
 

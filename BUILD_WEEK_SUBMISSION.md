@@ -94,10 +94,11 @@ commit `843530c` from **12 July 2026**. Work presented as Build Week work began
 on **14 July 2026**. The frozen product candidate is:
 
 - **Baseline:** `843530c`
-- **Product candidate commit:** `e831c14dfa15291dda152d7742766221438feaa3`
-- **Build Week comparison:** `843530c..e831c14dfa15291dda152d7742766221438feaa3`
-- **Branch tip:** a contiguous later documentation/proof-harness stack; no
-  product runtime or packaged binary changes after the candidate hash above.
+- **Public release candidate:** `c5cabbec8f5127fdf126d3ddb5e4c72a638e0931`
+  (`v0.1.2-alpha`)
+- **Private provenance range:** `843530c..e831c14dfa15291dda152d7742766221438feaa3`
+- **Branch tip:** a later documentation-only evidence commit; no product runtime,
+  tag, or packaged binary changes after the public candidate above.
 
 See [Build-period delta](docs/submission/BUILD_PERIOD_DELTA.md) for the auditable
 split between reusable product work and submission-only material.
@@ -141,12 +142,12 @@ state and limitations.
 | Public project/repository URL | <https://github.com/jcomlabs/code-hangar> |
 | Public YouTube demo, under three minutes, with audio | Pending recording and owner authorization |
 | Codex session selected for `/feedback` | `019f3315-12ff-7071-8534-04fe50ed534e`; external `/feedback` action pending authorization |
-| Primary Connector installer | Public release rebuild pending |
-| Local isolation-proof installer | Public release rebuild pending |
-| Final Connector SHA-256 | `ffa66b3033ac4cd51e017bb2592f9e37dcbc8f688faff9f82f10a065d926d241` |
-| Final Local SHA-256 | `52288762d0de48403cd545852374178bf6cb72815f0c1c7c08d14fb0ee521a47` |
-| Native candidate lifecycle | Both exact 0.1.2 editions installed, launched with isolated application profiles, showed the expected edition boundary, and uninstalled on the host; separate clean Sandbox attempts were blocked pre-setup by Application Control |
-| Live GPT-5.6 evidence | Local GPT-5.6 Sol + Code Hangar MCP subscription proof passed through the installed candidate sidecar; final public native video capture pending |
+| Primary Connector installer | [Public 0.1.2-alpha release](https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha) |
+| Local isolation-proof installer | [Public 0.1.2-alpha release](https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha) |
+| Final Connector SHA-256 | `9103b2c657347ee39bb55f28eb0d8c78acd4400043459efde7d681ecfff1ee01` |
+| Final Local SHA-256 | `b4433c85eb30afe25afb77ede6c2ab3bf08a7608154d2f06d82e4c3c1e919acb` |
+| Native candidate lifecycle | Public assets downloaded and hash-reverified; the final Local installer was blocked pre-setup by guest Application Control in an empty network-disabled Sandbox. The fail-fast run did not execute the final Connector, so clean install remains unverified for both editions. Earlier 0.1.2 host runs are predecessor evidence only. |
+| Live GPT-5.6 evidence | ChatGPT subscription + GPT-5.6 Sol proof passed against the final compiled MCP sidecar (`e36e3cbe…`) with two audited reads and zero persisted Codex sessions; final installed-product video capture remains pending |
 
 The [official Build Week rules](https://openai.devpost.com/rules) set the
 deadline at **21 July 2026 at 5:00 PM PT**. This candidate uses English for the

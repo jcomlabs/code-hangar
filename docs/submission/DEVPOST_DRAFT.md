@@ -12,7 +12,7 @@
 | Tagline | **The local-first flight recorder for vibe coding.** |
 | Repository | <https://github.com/jcomlabs/code-hangar> |
 | Demo video | Pending owner-authorized public YouTube URL |
-| Test build | Pending owner-authorized Connector installer URL |
+| Test build | <https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha> |
 | Supported platform | Windows 11 x64; WSL projects are catalogued from Windows |
 | License | Apache-2.0 |
 | Codex feedback session | `019f3315-12ff-7071-8534-04fe50ed534e` |
@@ -55,8 +55,8 @@ and prepared the judge evidence.
 
 GPT-5.6 is demonstrated through **MCP out**: Codex, signed in with ChatGPT,
 queries Code Hangar's scoped local tools. A synthetic acceptance run completed
-through the sidecar installed by the final Connector with `gpt-5.6-sol`, two
-audited Code Hangar reads, no API key, and no retained personal data. The
+through the final compiled Connector sidecar with `gpt-5.6-sol`, two audited
+Code Hangar reads, no API key, and no retained personal data. The
 separate **AI in** path is the in-app provider adapter: its
 OpenAI GPT-5.6 request contract, exact disclosure, secret gate, and compatible
 provider behavior are tested. A future Codex app-server adapter could bring
@@ -107,9 +107,11 @@ optional inbound route, but they are a separate billing and trust boundary.
 
 Code Hangar is a pre-existing project. The declared baseline is commit
 `843530c` from 12 July 2026. The eligible Build Week comparison is
-`843530c..e831c14dfa15291dda152d7742766221438feaa3`. The reusable product work,
-GPT-5.6 request integration, and removable submission-only package are separated
-in local history and documented in `BUILD_PERIOD_DELTA.md`.
+`843530c..e831c14dfa15291dda152d7742766221438feaa3` in the preserved private
+provenance record. The privacy-sanitized public release candidate is
+`c5cabbec8f5127fdf126d3ddb5e4c72a638e0931`. The reusable product snapshot and
+removable submission-only package are separated publicly and documented in
+`BUILD_PERIOD_DELTA.md`.
 
 ## Technologies
 
@@ -120,13 +122,12 @@ DPAPI`, `Model Context Protocol`, `Codex`, `GPT-5.6`, `PowerShell`, `Vitest`
 
 - Windows x64 only; the installers are currently unsigned preview builds.
 - The exact 0.1.2 bytes have not completed a clean disposable-Windows lifecycle:
-  separate network-disabled Sandbox attempts were blocked before setup/product
-  execution by guest Application Control because the installers are unsigned.
+  guest Application Control blocked the downloaded Local installer before
+  setup/product execution, so the fail-fast run never executed Connector.
 - The primary live proof is subscription-backed GPT-5.6 through Code Hangar MCP.
 - The in-app direct OpenAI path is contract-tested but has no separately captured
   paid API round trip.
 - The subscription-backed app-server inbound adapter is a documented extension
   path, not a shipped candidate feature.
 - YouTube publication, `/feedback`, and final Devpost submission remain
-  owner-gated external actions. Release URLs are filled after the public
-  candidate rebuild and re-verification.
+  owner-gated external actions. The public release URL and hashes are final.

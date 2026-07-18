@@ -15,25 +15,21 @@ edition-isolation proof.
 Both Windows installers are unsigned preview builds (`Authenticode: NotSigned`).
 Windows SmartScreen may show an unknown-publisher warning.
 
-The exact 0.1.2 bytes were installed, launched natively, inspected, and
-uninstalled on the validated build host using isolated application profiles.
-Both edition boundaries matched the package, the pre-existing real catalog was
-hash-verified unchanged, and the installed Connector sidecar completed the
-GPT-5.6 subscription proof. This is not a clean disposable-machine result: the
-exact Local and Connector candidates were attempted separately from empty,
-network-disabled Windows Sandbox guests on 18 July, but Application Control
-blocked both unsigned installers before setup or product code ran. Each guest
-finished cleanly with zero Code Hangar apps/processes. The Connector host
-uninstaller also left generated WebView2 profile data, though no application
-binary, process, or uninstall entry remained. See the
+The published 0.1.2 bytes were downloaded into a fresh directory and
+hash-reverified. The final compiled Connector sidecar completed the GPT-5.6
+subscription proof. Exact host install/launch/uninstall was not repeated for
+these release hashes because an existing installation and parallel sessions had
+to remain untouched. In an empty network-disabled Windows Sandbox, Application
+Control blocked the final downloaded Local installer before setup or product
+code ran; the fail-fast run ended cleanly and therefore did not execute the
+Connector installer. See the
 [evidence manifest](EVIDENCE_MANIFEST.md); do not weaken host security policy to
 work around the clean-machine limitation.
 
 ## Option A — primary reviewer path: Connector installer
 
-1. Obtain `Code-Hangar-AI-Connector_0.1.2_x64-setup.exe`. The local candidate is
-   ready under `target/release/bundle/nsis/release-assets/`; an upload URL is
-   pending owner authorization.
+1. Download `Code-Hangar-AI-Connector_0.1.2_x64-setup.exe` from the
+   [public prerelease](https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha).
 2. Verify its SHA-256:
 
    ```powershell
@@ -41,7 +37,7 @@ work around the clean-machine limitation.
    ```
 
    Expected:
-   `ffa66b3033ac4cd51e017bb2592f9e37dcbc8f688faff9f82f10a065d926d241`
+   `9103b2c657347ee39bb55f28eb0d8c78acd4400043459efde7d681ecfff1ee01`
 3. Install and launch **Code Hangar — AI Connector**. It is a per-user Windows
    application and should not require administrator rights.
 4. Start with the included sample project or register a disposable local project.
@@ -65,7 +61,7 @@ work around the clean-machine limitation.
 ### Live-model proof status
 
 On 18 July 2026, Codex CLI 0.144.1 signed in with ChatGPT completed a real
-`gpt-5.6-sol` response through the sidecar installed by the final Connector
+`gpt-5.6-sol` response through the final compiled Connector sidecar
 after calling Code Hangar's `list_catalog` and `get_project_context` MCP tools
 against a synthetic catalog. Both reads were audited, the temporary credential
 was revoked, and the sanitized local report contains no token or personal data.
@@ -77,7 +73,8 @@ powershell -ExecutionPolicy Bypass -File `
   -EvidenceDir .local/acceptance/judge-gpt56-mcp-proof
 ```
 
-To bind the same proof to an installed Connector, add:
+To bind the same proof to an installed Connector in a disposable environment,
+add:
 
 ```powershell
 -ServerPath "$env:LOCALAPPDATA\Code Hangar AI Connector\code-hangar-mcp.exe"
@@ -124,10 +121,10 @@ Important limitations:
 
 ## Option C — Local isolation proof
 
-1. Obtain `Code-Hangar_0.1.2_x64-setup.exe` from the local release-assets
-   directory; an upload URL is pending owner authorization.
+1. Download `Code-Hangar_0.1.2_x64-setup.exe` from the
+   [public prerelease](https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha).
 2. Verify SHA-256 against
-   `52288762d0de48403cd545852374178bf6cb72815f0c1c7c08d14fb0ee521a47`.
+   `b4433c85eb30afe25afb77ede6c2ab3bf08a7608154d2f06d82e4c3c1e919acb`.
 3. Launch **Code Hangar (Local)** and follow the same Review Inbox and recap path.
 4. Confirm that AI-provider and connected-app controls are absent.
 5. For source-level proof, run the edition checker through the normal build:
@@ -179,10 +176,10 @@ its bundle.
 
 ## Repository and license
 
-- Repository/judge-access URL: pending owner authorization
+- Repository/judge-access URL: <https://github.com/jcomlabs/code-hangar>
 - License: Apache License 2.0 (`LICENSE`)
-- Product candidate: `e831c14dfa15291dda152d7742766221438feaa3`
-- Build Week comparison: `843530c..e831c14dfa15291dda152d7742766221438feaa3`
+- Public release candidate: `c5cabbec8f5127fdf126d3ddb5e4c72a638e0931`
+- Private provenance range: `843530c..e831c14dfa15291dda152d7742766221438feaa3`
 - Final local results: [evidence manifest](EVIDENCE_MANIFEST.md)
 
 ## Prepared screenshots

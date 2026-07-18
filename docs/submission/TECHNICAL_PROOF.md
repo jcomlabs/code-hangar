@@ -43,7 +43,7 @@ Status vocabulary:
 | Corrections are small, exact-diff reviewed, snapshotted, and restorable | Repository-verifiable | Edit preview/CAS/snapshot/restore code and tests | Native disposable-data demo pending |
 | Final Connector and Local installers match recorded hashes | Locally verified | Packaging/checksum scripts | Final manifest and local `SHA256SUMS` |
 | Exact 0.1.2 host install, native launch, edition UI, and uninstall lifecycle succeeds | **Locally verified with disclosed limitations** | Final installers plus isolated application profiles; pre-existing catalog verified unchanged | Sanitized lifecycle summary in the final manifest |
-| Candidate installs on a clean supported Windows system | **Blocked before product execution; not verified for 0.1.2** | Exact Local and Connector hashes attempted separately with `scripts/submission/sandbox-candidate-lifecycle.ps1` from empty, network-disabled guests | Guest Application Control blocks both unsigned setups; use signed bytes or another disposable VM |
+| Candidate installs on a clean supported Windows system | **Blocked before product execution; not verified for 0.1.2** | Final downloaded Local hash attempted with `scripts/submission/sandbox-candidate-lifecycle.ps1` from an empty, network-disabled guest | Guest Application Control blocked Local; the fail-fast run did not execute Connector. Use signed bytes or another disposable VM |
 
 ## GPT-5.6 path A — subscription-backed MCP out
 
@@ -57,8 +57,8 @@ The acceptance proof completed on 18 July 2026:
 
 - Codex CLI `0.144.1`, already signed in with ChatGPT;
 - explicit model `gpt-5.6-sol`;
-- final installed Connector sidecar with SHA-256
-  `6e8c2bd602977a456d24c094972a816a9f48bb4f19110e1eb7535e0401b4e97d`;
+- final compiled Connector sidecar with SHA-256
+  `e36e3cbe522ef8bb96515f5582e69aa294ddcb2c8f7de1827954714e0bf95b07`;
 - disposable Code Hangar catalog and temporary Codex client grant;
 - successful `list_catalog` and `get_project_context` calls;
 - exact synthetic project returned in the final model answer;
@@ -185,16 +185,16 @@ from the final candidate commit, Connector first and Local last, then record:
 
 | Evidence | Final value |
 |---|---|
-| Candidate commit | `e831c14dfa15291dda152d7742766221438feaa3` |
+| Candidate commit | `c5cabbec8f5127fdf126d3ddb5e4c72a638e0931` |
 | Working tree | Clean at candidate before packaging/evidence generation |
 | Full local gate | [PASS summary](EVIDENCE_MANIFEST.md) |
 | Connector filename | `Code-Hangar-AI-Connector_0.1.2_x64-setup.exe` |
-| Connector SHA-256 | `ffa66b3033ac4cd51e017bb2592f9e37dcbc8f688faff9f82f10a065d926d241` |
+| Connector SHA-256 | `9103b2c657347ee39bb55f28eb0d8c78acd4400043459efde7d681ecfff1ee01` |
 | Local filename | `Code-Hangar_0.1.2_x64-setup.exe` |
-| Local SHA-256 | `52288762d0de48403cd545852374178bf6cb72815f0c1c7c08d14fb0ee521a47` |
+| Local SHA-256 | `b4433c85eb30afe25afb77ede6c2ab3bf08a7608154d2f06d82e4c3c1e919acb` |
 | Authenticode state | `NotSigned` for both installers |
-| Exact host lifecycle | Passed for both 0.1.2 editions with isolated profiles; real catalog unchanged; generated Connector WebView2 residue disclosed |
-| Clean disposable-machine install | Exact Local and Connector candidates attempted separately on 18 July; both blocked before setup/product execution by guest Application Control; not verified |
+| Exact release host lifecycle | Not rerun; predecessor 0.1.2 lifecycle evidence is not promoted to these hashes |
+| Clean disposable-machine install | Final downloaded Local was blocked before setup/product execution by guest Application Control; Connector was not executed; not verified |
 | Demo video | Pending recording and owner-authorized publication |
 
 Any unsigned status or uncompleted clean-machine check must be disclosed plainly;

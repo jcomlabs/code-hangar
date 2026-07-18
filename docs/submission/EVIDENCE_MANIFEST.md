@@ -8,15 +8,14 @@ code excerpt, or private repository URL.
 
 | Item | Value |
 |---|---|
-| Branch | `submission/openai-build-week` (local only; no upstream) |
+| Branch | public `submission/openai-build-week` |
 | Declared pre-event baseline | `843530c` (12 July 2026) |
-| Product candidate | `e831c14dfa15291dda152d7742766221438feaa3` |
-| Review range | `843530c..e831c14dfa15291dda152d7742766221438feaa3` |
+| Public release candidate | `c5cabbec8f5127fdf126d3ddb5e4c72a638e0931` (`v0.1.2-alpha`) |
+| Private provenance range | `843530c..e831c14dfa15291dda152d7742766221438feaa3` |
 | Eligible-range size | 10 commits; 130 files changed; +30,676 / -4,119 |
-| General hardening layer | `362f5c5` |
-| Reusable GPT-5.6 layer | `519086f` |
-| Submission package layer | `e831c14` |
-| Evidence layer | contiguous documentation/proof-harness commits above `e831c14` |
+| Public general layer | `a6378adbf2a5b11200d90c14542a279d951519b6` (`main`) |
+| Submission package layer | `c5cabbec8f5127fdf126d3ddb5e4c72a638e0931` |
+| Evidence layer | later documentation-only commit above the release tag |
 | Version | `0.1.2` across Cargo workspace, Tauri, npm root/workspace, and lockfiles |
 | Validation host | Windows 11 Pro x64, build 26200 |
 | Candidate worktree | clean before packaging and evidence generation |
@@ -29,23 +28,26 @@ hash or candidate hash.
 
 | Command / gate | Result |
 |---|---|
-| `npm run check` | PASS — TypeScript, ESLint, 47 Vitest files / 428 tests, dependency guard, forbidden-code guard |
-| Detached clean checkout: offline `npm install` then `npm run check` | PASS — 185 packages installed from local cache, 47 Vitest files / 428 tests passed, security gates passed, and the disposable worktree stayed clean |
-| `npm --workspace apps/desktop run build:connector` | PASS — 22 Connector text assets; main chunk 480.93 kB |
-| `npm --workspace apps/desktop run build:local` | PASS — 11 Local text assets; no Connector chunks, endpoints, or IPC commands; main chunk 486.20 kB |
-| `scripts/local-ci.ps1 -AgentAutomation -SkipTauriBuild` | PASS in 207.6 s — npm gate, Local isolation, Rust formatting, sandbox-validator self-test, core/mutation/agent-automation tests, MCP/release-sidecar build, and warnings-denied Clippy |
-| `npm --workspace apps/desktop run package:connector` | PASS in 184.6 s — release MCP sidecar staged and Connector NSIS created |
-| `npm --workspace apps/desktop run package:local` | PASS in 131.0 s — staged Connector sidecar removed, Local isolation rerun, Local NSIS created |
+| `npm run check` | PASS — TypeScript, ESLint, 47 Vitest files / 430 tests, dependency guard, forbidden-code guard |
+| `node scripts/publication-audit.mjs` and `node scripts/secret-scan.mjs` | PASS — 310 files audited; 288 text files plus Git patch history scanned |
+| `npm audit --audit-level=high` | PASS — 0 vulnerabilities |
+| Rust 1.97 `cargo fmt --all --check` and warnings-denied workspace Clippy | PASS |
+| `cargo test --workspace --no-default-features --features core` | PASS — complete core workspace; environment/data/stress ignores remain explicitly unclaimed |
+| GitHub Actions `main` | PASS — [run 29644002665](https://github.com/jcomlabs/code-hangar/actions/runs/29644002665) |
+| GitHub Actions release candidate | PASS — [run 29644078144](https://github.com/jcomlabs/code-hangar/actions/runs/29644078144) |
+| `npm --workspace apps/desktop run package:connector` | PASS — release MCP sidecar staged and Connector NSIS created |
+| `npm --workspace apps/desktop run package:local` | PASS — staged Connector sidecar removed, Local isolation rerun, Local NSIS created |
 | `scripts/checksums.ps1` | PASS — current-version release copies matched their source hashes |
-| Exact 0.1.2 installer lifecycle on the build host | PASS with disclosed limitations — both editions installed, launched natively with isolated application profiles, showed the expected edition UI, and uninstalled; the six pre-existing catalog files remained byte-, timestamp-, and SHA-256-identical |
-| `scripts/submission/sandbox-candidate-lifecycle.ps1` | BLOCKED PRE-PRODUCT — the exact Local and Connector candidates were attempted separately from an empty, network-disabled Windows Sandbox; guest Application Control blocked each unsigned setup before NSIS or product code ran, and both guests finished with zero installed apps/processes |
-| `scripts/submission/codex-gpt56-mcp-smoke.ps1` against the installed sidecar | PASS — ChatGPT-authenticated Codex 0.144.1 ran GPT-5.6 Sol through the sidecar installed by the final Connector, completed two audited Code Hangar MCP reads, revoked the temporary credential, and retained only a sanitized result |
+| Public release re-download and independent SHA-256 verification | PASS — both downloaded executables matched the published `SHA256SUMS` |
+| Exact public 0.1.2 installer lifecycle on the build host | NOT RUN — avoided to preserve the existing installed application and parallel sessions; earlier candidate lifecycle evidence is not promoted to the final release |
+| `scripts/submission/sandbox-candidate-lifecycle.ps1` | BLOCKED PRE-PRODUCT — final downloaded Local setup was refused by guest Application Control in an empty network-disabled Sandbox; the fail-fast run left the guest clean and did not execute Connector |
+| `scripts/submission/codex-gpt56-mcp-smoke.ps1` against the final compiled sidecar | PASS — ChatGPT-authenticated Codex 0.144.1 ran GPT-5.6 Sol, completed two audited MCP reads, revoked the temporary credential, and created zero persisted session files |
 
 Representative Rust results from the final gate:
 
 - `hangar-ai`: 26 passed, 1 ignored live-local Ollama check;
-- `hangar-api`: 63 passed, 5 explicitly ignored environment/data-stress checks;
-- `hangar-db`: 90 passed, 1 ignored file-backed performance fixture;
+- `hangar-api`: 163 passed, 6 explicitly ignored environment/data-stress checks;
+- `hangar-db`: 92 passed, 1 ignored file-backed performance fixture;
 - MCP wire/integration suite: 20 passed;
 - focused GPT-5.6 tests passed for direct-OpenAI request shape, exact disclosure,
   and non-OpenAI compatible-endpoint behavior.
@@ -60,8 +62,8 @@ Local directory:
 
 | Artifact | Bytes | SHA-256 | Authenticode |
 |---|---:|---|---|
-| `Code-Hangar-AI-Connector_0.1.2_x64-setup.exe` | 216,287,756 | `ffa66b3033ac4cd51e017bb2592f9e37dcbc8f688faff9f82f10a065d926d241` | `NotSigned` |
-| `Code-Hangar_0.1.2_x64-setup.exe` | 212,282,701 | `52288762d0de48403cd545852374178bf6cb72815f0c1c7c08d14fb0ee521a47` | `NotSigned` |
+| `Code-Hangar-AI-Connector_0.1.2_x64-setup.exe` | 216,288,811 | `9103b2c657347ee39bb55f28eb0d8c78acd4400043459efde7d681ecfff1ee01` | `NotSigned` |
+| `Code-Hangar_0.1.2_x64-setup.exe` | 212,282,648 | `b4433c85eb30afe25afb77ede6c2ab3bf08a7608154d2f06d82e4c3c1e919acb` | `NotSigned` |
 | `SHA256SUMS` | 211 | contains only the two 0.1.2 artifacts above | n/a |
 
 The two stale 0.1.1 release copies found during inspection were moved to the
@@ -70,8 +72,10 @@ current artifact was deleted. After Local packaging, no staged
 `code-hangar-mcp-*.exe` remained under the Tauri binaries directory.
 
 Both installers are unsigned preview builds. Judges may see a Windows
-SmartScreen unknown-publisher warning. Their exact host lifecycle is recorded
-separately below; it is not relabelled as a clean disposable-machine result.
+SmartScreen unknown-publisher warning. The public release is
+<https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha>. Its three
+assets were downloaded into a fresh directory outside the repository and both
+executables were independently reverified against the published manifest.
 
 ## GPT-5.6 proof boundary
 
@@ -79,9 +83,9 @@ Subscription-backed live proof completed on **18 July 2026**:
 
 - Codex CLI `0.144.1` reported `Logged in using ChatGPT`;
 - the explicit `gpt-5.6-sol` model returned a real answer;
-- the MCP executable was the sidecar installed by
-  `Code-Hangar-AI-Connector_0.1.2_x64-setup.exe`, with SHA-256
-  `6e8c2bd602977a456d24c094972a816a9f48bb4f19110e1eb7535e0401b4e97d`;
+- the MCP executable was the final sidecar compiled from the tagged public
+  candidate and staged by Connector packaging, with SHA-256
+  `e36e3cbe522ef8bb96515f5582e69aa294ddcb2c8f7de1827954714e0bf95b07`;
 - the model called Code Hangar's `list_catalog` and `get_project_context` tools
   over the shipped MCP stdio surface;
 - the answer identified the exact synthetic `Fixture Git-like Project`;
@@ -92,11 +96,12 @@ Subscription-backed live proof completed on **18 July 2026**:
 - no API key, OAuth token, personal project path, or personal project body was
   retained; and
 - the sanitized gitignored report is
-  `.local/acceptance/gpt56-mcp-installed-20260718-01/codex-gpt56-mcp-proof.json`.
+  `.local/acceptance/gpt56-mcp-release-20260718-135432/codex-gpt56-mcp-proof.json`.
 
 The tracked reproduction procedure is
 `scripts/submission/codex-gpt56-mcp-smoke.ps1`; its optional `-ServerPath`
-parameter binds the proof to an explicitly installed candidate sidecar. The
+parameter binds the proof to an explicit sidecar executable and records its
+hash; that executable may be an installed sidecar or the final packaging input. The
 final public video must still show the native Connector, Codex, and the matching
 audit activity; this synthetic-catalog proof is not presented as a clean-machine
 or public-video result.
@@ -143,34 +148,25 @@ runtime application traffic, telemetry, project publication, or submission.
 ## Owner-gated and unverified items
 
 - final public installed-Connector + Codex + disposable-project GPT-5.6 video
-  journey: not yet captured; the installed-sidecar subscription/MCP proof above
-  has passed;
+  journey: not yet captured; the exact compiled-sidecar subscription/MCP proof
+  above has passed, but it is not an installed-product claim;
 - optional paid direct-API round trip from in-app AI Assist: not run and not
   required for the primary demo;
 - Codex `/feedback`: not sent;
-- exact 0.1.2 host lifecycle: passed for both editions using isolated disposable
-  application profiles. The Connector exposed its Connector-only controls and
-  installed MCP sidecar; the Local edition exposed neither. Both uninstalled,
-  no process or uninstall entry remained, and the six pre-existing real catalog
-  files retained identical bytes, timestamps, and SHA-256 hashes. The sanitized
-  summary is
-  `.local/acceptance/host-lifecycle-20260718-01/HOST_LIFECYCLE_SUMMARY.json`;
+- exact public 0.1.2 host lifecycle: not run, to avoid interfering with the
+  existing installation and parallel sessions. Earlier 0.1.2 candidates passed
+  isolated-profile host lifecycle checks, but their hashes differ and they are
+  predecessor evidence only;
 - clean disposable-Windows install/uninstall: still not verified. On 18 July,
-  the exact Local and Connector candidates were each attempted in a separate
-  empty, network-disabled Windows Sandbox. Their staged hashes matched this
-  manifest, but guest Application Control blocked both unsigned installers
-  before setup or product code ran. Each fail-closed run began and ended with
-  zero Code Hangar apps/processes. The sanitized combined result is
-  `.local/acceptance/build-week-sandbox/SANDBOX_CANDIDATE_SUMMARY.json`; the raw
-  Local and Connector manifests are in its adjacent candidate-04 and
-  candidate-03 directories. Historical 0.1.1 success on 12 July is not evidence
-  for these bytes, and host lifecycle proof is not silently promoted to
-  clean-machine proof;
-- uninstall residue: the isolated Connector launch left generated WebView2
-  profile data after NSIS uninstall. No application binary, running process, or
-  uninstall registry entry remained;
-- repository publication or private judge sharing: not performed;
-- installer upload/release: not performed;
+  the exact downloaded Local setup was attempted in an empty, network-disabled
+  Windows Sandbox. Guest Application Control blocked it before setup or product
+  code ran; the clean start and final inspection both passed with zero Code
+  Hangar apps/processes. Because the runner is fail-fast, the final Connector was
+  staged but not executed. Evidence is under
+  `.local/acceptance/build-week-sandbox/20260718-135126/`. Historical candidates
+  are not evidence for these bytes;
+- repository and installer release: published and reverified at
+  <https://github.com/jcomlabs/code-hangar/releases/tag/v0.1.2-alpha>;
 - public narrated YouTube demo: not recorded or uploaded;
 - Devpost account: created according to the owner; project draft/final submission
   not performed.
