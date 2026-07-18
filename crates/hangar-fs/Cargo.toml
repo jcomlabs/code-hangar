@@ -14,7 +14,7 @@ agent_automation = []
 hangar-core = { path = "../hangar-core" }
 hangar-protect = { path = "../hangar-protect" }
 walkdir.workspace = true
-windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_Storage_FileSystem"] }
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Storage_FileSystem"] }
 
 [dev-dependencies]
 tempfile.workspace = true

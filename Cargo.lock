@@ -1271,7 +1271,7 @@ version = "0.1.1"
 dependencies = [
  "serde",
  "serde_json",
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1283,7 +1283,7 @@ dependencies = [
  "serde",
  "serde_json",
  "url",
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1312,7 +1312,7 @@ dependencies = [
  "serde_json",
  "tempfile",
  "toml_edit 0.22.27",
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1352,7 +1352,7 @@ dependencies = [
  "serde_json",
  "tempfile",
  "thiserror 2.0.18",
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1373,7 +1373,7 @@ dependencies = [
  "hangar-protect",
  "tempfile",
  "walkdir",
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1456,7 +1456,7 @@ name = "hangar-security"
 version = "0.1.1"
 dependencies = [
  "hangar-core",
- "windows-sys 0.60.2",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
