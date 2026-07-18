@@ -9,6 +9,41 @@
 > and optional connector are built and tested; expect rough edges and breaking
 > changes before 1.0. See [known issues](KNOWN_ISSUES.md).
 
+> **OpenAI Build Week 2026 candidate:** this branch carries an isolated,
+> removable judge package above the reusable product commit. Start with the
+> [submission overview](BUILD_WEEK_SUBMISSION.md),
+> [judge quickstart](docs/submission/JUDGE_QUICKSTART.md), and
+> [auditable build-period delta](docs/submission/BUILD_PERIOD_DELTA.md).
+
+### What changed for Build Week
+
+Code Hangar predates the event. The product owner's core decisions remain
+visible in the implementation: deterministic local evidence is the source of
+truth, AI is optional and Off by default, Local and Connector are separate
+builds, and corrections stay small, reviewed, validated, and reversible. The
+legacy private development history was deliberately not published; this public
+repository starts from a privacy-audited, reproducible source snapshot.
+
+During the eligible period, ChatGPT/Codex helped audit the existing code and
+dirty delta, implement bounded review/navigation and graph-safety improvements,
+add regressions, check edition isolation, and close the dual-installer and
+judge-evidence package. GPT-5.6 is an explanation layer; it does not replace the
+evidence record. The primary proof uses the shipped MCP sidecar with a synthetic,
+project-scoped Code Hangar catalog. The optional direct OpenAI request contract
+and compatible-provider behavior are separately tested; a paid API call is not
+required for the primary demo.
+
+For a tour that reads no personal project data, run the synthetic Connector
+fixture:
+
+```powershell
+npm --workspace apps/desktop run dev:connector
+```
+
+Then open `http://127.0.0.1:5173/?acceptanceState=saturated`. Fixture screens
+demonstrate deterministic UI and safety states only; they are not live-model or
+native-filesystem proof.
+
 Claude Code, ChatGPT, Cursor, Antigravity, Hermes, OpenClaw, Pinokio and similar tools scatter projects, conversation transcripts, model files and caches across your disk. Code Hangar inventories all of it — entirely on your computer — so you can find it, understand it, navigate it, and clean it up safely.
 
 It is **not** an IDE, an autonomous coding agent, a chat client or a generic disk cleaner. It is a retrospective workspace for vibe coders: reconstruct what an AI recorded, understand the affected code, and make at most one small reversible correction at a time.

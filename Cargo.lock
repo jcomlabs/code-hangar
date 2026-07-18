@@ -325,7 +325,7 @@ dependencies = [
 
 [[package]]
 name = "code-hangar-desktop"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-api",
  "hangar-core",
@@ -337,7 +337,7 @@ dependencies = [
 
 [[package]]
 name = "code-hangar-mcp"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-agent",
  "hangar-api",
@@ -1259,7 +1259,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-accounting"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
  "rusqlite",
@@ -1267,7 +1267,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-agent"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde",
  "serde_json",
@@ -1276,7 +1276,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-ai"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "keyring",
  "reqwest 0.12.28",
@@ -1288,7 +1288,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-api"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "blake3",
  "chrono",
@@ -1317,7 +1317,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-appconfig"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "blake3",
  "serde",
@@ -1328,7 +1328,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-core"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde",
  "serde_json",
@@ -1336,7 +1336,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-db"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "blake3",
  "chrono",
@@ -1357,7 +1357,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-discovery"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
  "rusqlite",
@@ -1367,7 +1367,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-fs"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
  "hangar-protect",
@@ -1378,7 +1378,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-graph"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "serde_json",
  "thiserror 2.0.18",
@@ -1386,14 +1386,14 @@ dependencies = [
 
 [[package]]
 name = "hangar-jobs"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
 ]
 
 [[package]]
 name = "hangar-mcp"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "blake3",
  "hangar-agent",
@@ -1404,7 +1404,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-mutation"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "blake3",
  "chrono",
@@ -1419,14 +1419,14 @@ dependencies = [
 
 [[package]]
 name = "hangar-nav"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
 ]
 
 [[package]]
 name = "hangar-plan"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "chrono",
  "hangar-accounting",
@@ -1438,7 +1438,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-preview"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
  "pulldown-cmark",
@@ -1446,14 +1446,14 @@ dependencies = [
 
 [[package]]
 name = "hangar-protect"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
 ]
 
 [[package]]
 name = "hangar-security"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "hangar-core",
  "windows-sys 0.60.2",
@@ -1461,7 +1461,7 @@ dependencies = [
 
 [[package]]
 name = "hangar-test-fixtures"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "tempfile",
 ]
