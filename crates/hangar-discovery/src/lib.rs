@@ -8687,7 +8687,7 @@ mod tests {
             .contains("#hermes-session=hermes-1234567890"));
         assert_eq!(
             sessions[0].linked_project_paths,
-            vec![display_path(&project)]
+            vec![display_path(&canonical_or_original(&project))]
         );
         let (transcript, truncated) =
             hermes_session_transcript(&db_path, "hermes-1234567890", 32 * 1024).unwrap();
@@ -8879,7 +8879,7 @@ mod tests {
         );
         assert_eq!(
             sessions[0].linked_project_paths,
-            vec![display_path(&project)]
+            vec![display_path(&canonical_or_original(&project))]
         );
     }
 
