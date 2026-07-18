@@ -11,7 +11,7 @@ version.workspace = true
 [dependencies]
 serde = { workspace = true }
 serde_json = { workspace = true }
-reqwest = { version = "0.12", features = ["blocking", "json"] }
+reqwest = { version = "0.13", features = ["blocking", "json"] }
 # Same URL parser reqwest uses (already in the tree transitively): the loopback guard parses
 # the endpoint with `url` so its host EXACTLY matches the host reqwest will connect to. A
 # hand-rolled parser diverged from WHATWG (e.g. backslash handling), which is a loopback-bypass
