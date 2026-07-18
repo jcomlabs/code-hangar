@@ -1,0 +1,22 @@
+[package]
+name = "hangar-appconfig"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+# Safe, per-host writer that registers/unregisters the code-hangar connected-AI-app
+# server in each AI app's config. Every write is backed up, atomic and verified, and
+# an unparseable config is never overwritten. Never linked by the strict core lane or
+# Local edition.
+#
+# `serde_json` is taken with `preserve_order` so a register/unregister produces a
+# minimal diff in the user's (often large) JSON config instead of reordering every
+# key. Feature unification is contained: the strict core lane and Local edition never link this crate.
+[dependencies]
+blake3.workspace = true
+serde = { workspace = true }
+serde_json = { workspace = true, features = ["preserve_order"] }
+toml_edit = "0.22"
+
+[dev-dependencies]
+tempfile = { workspace = true }

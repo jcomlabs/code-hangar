@@ -1,0 +1,15 @@
+[package]
+name = "hangar-accounting"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+mutation = []
+agent_automation = []
+
+[dependencies]
+hangar-core = { path = "../hangar-core" }
+rusqlite.workspace = true

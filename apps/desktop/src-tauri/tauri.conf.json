@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Code Hangar",
+  "version": "0.1.1",
+  "identifier": "local.codehangar.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build:local",
+    "devUrl": "http://127.0.0.1:5173",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Code Hangar",
+        "label": "main",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 960,
+        "minHeight": 640
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' asset: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "icon": [
+      "icons/32x32.png",
+      "icons/64x64.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "publisher": "JCOM Labs",
+    "homepage": "https://github.com/jcomlabs/code-hangar",
+    "copyright": "© 2026 JC-OM and Code Hangar contributors",
+    "category": "DeveloperTool",
+    "shortDescription": "Local-first catalog for your AI coding projects and sessions.",
+    "longDescription": "Code Hangar inventories the projects and chat sessions your AI coding tools (Claude, Cursor, ChatGPT, and more) leave on your machine — entirely locally. Browse and search them, understand each folder, find duplicates and orphaned model files, and reclaim disk space with a fully reversible, backup-first workflow. No account, no telemetry, no network: your data never leaves your PC and is encrypted at rest.",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "offlineInstaller",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["English"]
+      }
+    }
+  }
+}

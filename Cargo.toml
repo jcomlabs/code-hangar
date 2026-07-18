@@ -1,0 +1,49 @@
+[workspace]
+members = [
+  "apps/desktop/src-tauri",
+  "apps/mcp-server",
+  "crates/hangar-api",
+  "crates/hangar-accounting",
+  "crates/hangar-ai",
+  "crates/hangar-appconfig",
+  "crates/hangar-agent",
+  "crates/hangar-core",
+  "crates/hangar-db",
+  "crates/hangar-discovery",
+  "crates/hangar-fs",
+  "crates/hangar-graph",
+  "crates/hangar-jobs",
+  "crates/hangar-mcp",
+  "crates/hangar-mutation",
+  "crates/hangar-nav",
+  "crates/hangar-plan",
+  "crates/hangar-preview",
+  "crates/hangar-protect",
+  "crates/hangar-security",
+  "crates/hangar-test-fixtures",
+]
+resolver = "2"
+
+[workspace.package]
+authors = ["JC-OM"]
+edition = "2021"
+homepage = "https://github.com/jcomlabs/code-hangar"
+license = "Apache-2.0"
+repository = "https://github.com/jcomlabs/code-hangar"
+version = "0.1.1"
+
+[workspace.dependencies]
+ammonia = "4"
+blake3 = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "serde"] }
+pulldown-cmark = { version = "0.12", default-features = false, features = ["html"] }
+rusqlite = { version = "0.32", features = ["bundled-sqlcipher-vendored-openssl", "chrono", "serde_json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri = { version = "2", default-features = false, features = ["wry"] }
+tauri-build = { version = "2", default-features = false }
+tauri-plugin-dialog = "2"
+tempfile = "3"
+thiserror = "2"
+walkdir = "2"
+windows-sys = "0.60"

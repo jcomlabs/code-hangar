@@ -1,0 +1,15 @@
+[package]
+name = "hangar-security"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+mutation = []
+agent_automation = []
+
+[dependencies]
+hangar-core = { path = "../hangar-core" }
+windows-sys = { workspace = true, features = ["Win32_Foundation", "Win32_Security_Cryptography"] }

@@ -1,0 +1,30 @@
+[package]
+name = "hangar-db"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+mutation = []
+agent_automation = ["hangar-core/agent_automation"]
+
+[dependencies]
+blake3.workspace = true
+chrono.workspace = true
+hangar-accounting = { path = "../hangar-accounting" }
+hangar-core = { path = "../hangar-core" }
+hangar-graph = { path = "../hangar-graph" }
+hangar-nav = { path = "../hangar-nav" }
+hangar-plan = { path = "../hangar-plan" }
+hangar-preview = { path = "../hangar-preview" }
+hangar-protect = { path = "../hangar-protect" }
+rusqlite.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+windows-sys = { workspace = true, features = ["Win32_Foundation", "Win32_Security_Cryptography"] }
+
+[dev-dependencies]
+hangar-fs = { path = "../hangar-fs" }
+tempfile.workspace = true

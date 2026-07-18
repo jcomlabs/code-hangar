@@ -1,0 +1,156 @@
+.recap-ai-guide {
+  margin: 0 14px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.recap-ai-guide.open {
+  overflow: visible;
+}
+
+.recap-ai-toggle {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 18px;
+  align-items: center;
+  width: 100%;
+  min-height: 46px;
+  padding: 7px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+
+.recap-ai-toggle > span {
+  display: grid;
+  gap: 1px;
+}
+
+.recap-ai-toggle small,
+.recap-ai-preparing {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.recap-ai-body {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.recap-ai-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.recap-ai-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.recap-ai-tabs button {
+  min-height: 28px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.recap-ai-tabs button.active {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.recap-ai-selection {
+  color: var(--muted);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.recap-ai-send {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.recap-ai-send button {
+  margin-left: auto;
+}
+
+.recap-ai-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.recap-ai-off {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  gap: 7px;
+  padding: 9px;
+  border: 1px solid #d7a84f;
+  border-radius: 6px;
+  background: #fff8e8;
+  color: #765318;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.recap-ai-off span,
+.recap-ai-off strong {
+  display: block;
+}
+
+.recap-ai-off strong {
+  margin-bottom: 2px;
+}
+
+.recap-explain-edit {
+  white-space: nowrap;
+}
+
+.recap-ai-result {
+  display: grid;
+  gap: 10px;
+  padding-top: 9px;
+  border-top: 1px solid var(--line);
+}
+
+.recap-ai-section {
+  display: grid;
+  gap: 4px;
+}
+
+.recap-ai-section > strong {
+  color: var(--text);
+  font-size: 11px;
+}
+
+.recap-ai-section p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.recap-ai-section.be-careful > strong { color: var(--danger); }
+.recap-ai-section.double-check > strong { color: #a06414; }
+.recap-ai-section.learn > strong,
+.recap-ai-section.how-to-read > strong { color: var(--accent); }

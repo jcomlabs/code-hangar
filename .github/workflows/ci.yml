@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 24
+          cache: npm
+      - uses: dtolnay/rust-toolchain@4cda84d5c5c54efe2404f9d843567869ab1699d4 # stable
+        with:
+          components: clippy,rustfmt
+      - run: npm ci
+      - run: npm run check
+      - run: npm run audit:publication
+      - run: npm audit --audit-level=high
+      - run: cargo fmt --all --check
+      - run: cargo test --workspace --no-default-features --features core
+      - run: cargo clippy --workspace --all-targets --no-default-features --features core -- -D warnings
+      - run: npm --workspace apps/desktop run build:connector
+      - run: npm --workspace apps/desktop run tauri:build

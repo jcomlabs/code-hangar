@@ -1,0 +1,31 @@
+[package]
+name = "code-hangar-desktop"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = [
+  "hangar-api/core",
+  "hangar-core/core",
+]
+mutation = [
+  "hangar-api/mutation",
+  "hangar-core/mutation",
+]
+agent_automation = [
+  "mutation",
+  "hangar-api/agent_automation",
+  "hangar-core/agent_automation",
+]
+
+[build-dependencies]
+tauri-build.workspace = true
+
+[dependencies]
+hangar-api = { path = "../../../crates/hangar-api", default-features = false }
+hangar-core = { path = "../../../crates/hangar-core", default-features = false }
+serde.workspace = true
+tauri.workspace = true
+tauri-plugin-dialog.workspace = true

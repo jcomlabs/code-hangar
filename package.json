@@ -1,0 +1,27 @@
+{
+  "name": "codehangar",
+  "version": "0.1.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "JC-OM",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcomlabs/code-hangar.git"
+  },
+  "workspaces": [
+    "apps/desktop"
+  ],
+  "scripts": {
+    "dev": "npm --workspace apps/desktop run dev",
+    "build": "npm --workspace apps/desktop run build",
+    "lint": "npm --workspace apps/desktop run lint",
+    "test": "npm --workspace apps/desktop run test -- --run",
+    "check": "npm run lint && npm run test && npm run check:security",
+    "check:security": "node scripts/check-no-outbound-deps.mjs && node scripts/check-no-forbidden-code.mjs && node scripts/secret-scan.mjs",
+    "audit:publication": "node scripts/publication-audit.mjs --public-history",
+    "scan:secrets": "node scripts/secret-scan.mjs"
+  },
+  "devDependencies": {
+    "vite": "8.1.5"
+  }
+}

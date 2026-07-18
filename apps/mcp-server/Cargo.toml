@@ -1,0 +1,24 @@
+[package]
+name = "code-hangar-mcp"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+# The standalone connected-AI-app server. An AI app spawns it as a child process
+# and talks MCP over stdin/stdout. It opens the SAME encrypted database the
+# desktop app uses (DPAPI-wrapped key, same-Windows-user boundary) and reuses
+# hangar-api's authenticated dispatch. It is NOT part of the shipped desktop
+# build; it is a separate, opt-in artifact.
+[[bin]]
+name = "code-hangar-mcp"
+path = "src/main.rs"
+
+[dependencies]
+hangar-api = { path = "../../crates/hangar-api", features = ["agent_automation"] }
+hangar-mcp = { path = "../../crates/hangar-mcp" }
+
+[dev-dependencies]
+hangar-agent = { path = "../../crates/hangar-agent", features = ["agent_automation"] }
+hangar-appconfig = { path = "../../crates/hangar-appconfig" }
+serde_json.workspace = true
+tempfile.workspace = true

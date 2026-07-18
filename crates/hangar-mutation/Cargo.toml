@@ -1,0 +1,35 @@
+[package]
+name = "hangar-mutation"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+# All executable content is gated behind `mutation`. Under `core` this crate has
+# no dependencies and no code, so the strict core lane links no executor.
+mutation = [
+  "dep:rusqlite",
+  "dep:blake3",
+  "dep:thiserror",
+  "dep:serde",
+  "dep:serde_json",
+  "dep:chrono",
+  "dep:hangar-fs",
+  "dep:hangar-protect",
+]
+agent_automation = []
+
+[dependencies]
+hangar-fs = { path = "../hangar-fs", optional = true }
+hangar-protect = { path = "../hangar-protect", optional = true }
+rusqlite = { workspace = true, optional = true }
+blake3 = { workspace = true, optional = true }
+thiserror = { workspace = true, optional = true }
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true, optional = true }
+chrono = { workspace = true, optional = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

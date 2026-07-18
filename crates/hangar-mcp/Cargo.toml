@@ -1,0 +1,19 @@
+[package]
+name = "hangar-mcp"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+# The connected-AI-app server runtime. It is never part of the strict core lane
+# or the Local desktop edition; only the dedicated `code-hangar-mcp` binary links
+# it. It depends on hangar-api with `agent_automation` so every request runs
+# through the same token auth + scope + project gates + audit log as the
+# in-process server.
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+hangar-agent = { path = "../hangar-agent", features = ["agent_automation"] }
+hangar-api = { path = "../hangar-api", features = ["agent_automation"] }
+
+[dev-dependencies]
+blake3.workspace = true

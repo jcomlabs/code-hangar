@@ -1,0 +1,67 @@
+# Code Hangar
+
+# Rust
+/target/
+**/*.rs.bk
+
+# Node / frontend
+node_modules/
+dist/
+build/
+.vite/
+.next/
+.turbo/
+coverage/
+*.tsbuildinfo
+
+# Tauri
+src-tauri/target/
+apps/desktop/src-tauri/target/
+apps/desktop/src-tauri/gen/
+# Connector-edition sidecar (built by scripts/package-connector.ps1)
+apps/desktop/src-tauri/binaries/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*token*.json
+*credential*.json
+credentials.json
+oauth*.json
+!fixtures/sensitive-project/.env
+!fixtures/sensitive-project/credentials.json
+!fixtures/sensitive-project/token.json
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code session tooling (local only, not project code)
+.claude/launch.json
+.claude/settings.local.json
+scratch/
+
+# Logs
+*.log
+logs/
+
+# Local app data / generated fixtures
+.local/
+.tmp/
+tmp/
+fixtures/generated/
+
+# Code Hangar runtime data
+CodeHangarData/
+AIHangarData/
+quarantine/
+backups/
+db/*.sqlite
+db/*.sqlite-*

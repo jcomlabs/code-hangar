@@ -1,0 +1,13 @@
+[package]
+name = "hangar-discovery"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[dependencies]
+hangar-core = { path = "../hangar-core" }
+rusqlite.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

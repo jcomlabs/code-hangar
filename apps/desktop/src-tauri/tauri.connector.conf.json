@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Code Hangar AI Connector",
+  "build": {
+    "beforeDevCommand": "npm run dev:connector",
+    "beforeBuildCommand": "npm run build:connector"
+  },
+  "bundle": {
+    "externalBin": ["binaries/code-hangar-mcp"],
+    "shortDescription": "Local-first project catalog with optional connected-AI tools.",
+    "longDescription": "Code Hangar inventories local AI coding projects and sessions, encrypts its catalog at rest, and adds explicitly enabled AI-app integration. MCP control remains local over stdio or named pipes. The optional Explain Code feature sends only the selected, safety-checked file excerpt to the provider you configure — a local model server on your machine or your own API endpoint — using your own key; it is never enabled in the Local edition."
+  }
+}

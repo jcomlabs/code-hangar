@@ -1,0 +1,20 @@
+[package]
+name = "hangar-fs"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+mutation = []
+agent_automation = []
+
+[dependencies]
+hangar-core = { path = "../hangar-core" }
+hangar-protect = { path = "../hangar-protect" }
+walkdir.workspace = true
+windows-sys = { version = "0.60", features = ["Win32_Foundation", "Win32_Storage_FileSystem"] }
+
+[dev-dependencies]
+tempfile.workspace = true

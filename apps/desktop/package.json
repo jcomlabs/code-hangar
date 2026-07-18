@@ -1,0 +1,50 @@
+{
+  "name": "@codehangar/desktop",
+  "version": "0.1.1",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": "JC-OM",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcomlabs/code-hangar.git",
+    "directory": "apps/desktop"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "dev:connector": "vite --host 127.0.0.1 --mode connector",
+    "build": "npm run build:local",
+    "build:local": "tsc --noEmit && vite build --mode offline && node ../../scripts/check-frontend-edition.mjs local",
+    "build:connector": "tsc --noEmit && vite build --mode connector && node ../../scripts/check-frontend-edition.mjs connector",
+    "lint": "tsc --noEmit && eslint src",
+    "test": "vitest",
+    "tauri:dev": "tauri dev",
+    "tauri:dev:mutation": "tauri dev --features mutation",
+    "tauri:build": "tauri build",
+    "tauri:build:mutation": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ..\\..\\scripts\\package-local.ps1",
+    "build:connected-server": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ..\\..\\scripts\\build-connected-app-server.ps1",
+    "tauri:build:agent": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ..\\..\\scripts\\package-connector.ps1",
+    "package:local": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ..\\..\\scripts\\package-local.ps1",
+    "package:base": "npm run package:local",
+    "package:connector": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ..\\..\\scripts\\package-connector.ps1"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0",
+    "@tauri-apps/plugin-dialog": "^2.0.0",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/parser": "^8.62.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "^10.5.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "typescript": "^5.6.3",
+    "vite": "8.1.5",
+    "vitest": "^4.1.7"
+  }
+}

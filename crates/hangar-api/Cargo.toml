@@ -1,0 +1,40 @@
+[package]
+name = "hangar-api"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+mutation = ["dep:hangar-mutation", "dep:toml_edit", "hangar-db/mutation", "hangar-mutation/mutation", "hangar-security/mutation"]
+agent_automation = ["mutation", "dep:hangar-agent", "dep:hangar-appconfig", "dep:hangar-ai", "hangar-agent/agent_automation", "hangar-core/agent_automation", "hangar-db/agent_automation", "hangar-security/agent_automation"]
+
+[dependencies]
+blake3.workspace = true
+chrono.workspace = true
+hangar-accounting = { path = "../hangar-accounting" }
+hangar-agent = { path = "../hangar-agent", optional = true, default-features = false }
+hangar-ai = { path = "../hangar-ai", optional = true }
+hangar-appconfig = { path = "../hangar-appconfig", optional = true }
+hangar-core = { path = "../hangar-core" }
+hangar-mutation = { path = "../hangar-mutation", optional = true }
+hangar-db = { path = "../hangar-db" }
+hangar-discovery = { path = "../hangar-discovery" }
+hangar-fs = { path = "../hangar-fs" }
+hangar-jobs = { path = "../hangar-jobs" }
+hangar-plan = { path = "../hangar-plan" }
+hangar-protect = { path = "../hangar-protect" }
+hangar-security = { path = "../hangar-security" }
+pulldown-cmark.workspace = true
+rusqlite.workspace = true
+serde.workspace = true
+# preserve_order keeps `.claude.json` / config key order stable on a surgical edit (minimal
+# diff, and never reorders the live file the running Claude is reading).
+serde_json = { workspace = true, features = ["preserve_order"] }
+toml_edit = { version = "0.22", optional = true }
+windows-sys = { workspace = true, features = ["Win32_Foundation", "Win32_Security", "Win32_System_Diagnostics_ToolHelp", "Win32_System_JobObjects", "Win32_System_Registry", "Win32_System_SystemInformation", "Win32_System_Threading", "Win32_System_ProcessStatus"] }
+
+[dev-dependencies]
+hangar-test-fixtures = { path = "../hangar-test-fixtures" }
+tempfile.workspace = true

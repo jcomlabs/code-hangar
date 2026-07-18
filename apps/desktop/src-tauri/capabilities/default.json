@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Phase 0/1A local read-only desktop capabilities.",
+  "windows": ["main"],
+  "permissions": ["core:default", "dialog:default", "dialog:allow-open", "dialog:allow-confirm", "dialog:allow-ask"]
+}

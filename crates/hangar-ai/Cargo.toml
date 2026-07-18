@@ -1,0 +1,23 @@
+[package]
+name = "hangar-ai"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+# Connector-edition-only crate: the workspace's ONLY outbound-network module. Compiled
+# solely into the agent_automation (AI Connector) edition — never the strict core lane
+# or Local edition (CI-enforced by scripts/check-no-outbound-deps.mjs). reqwest uses the OS TLS stack
+# (SChannel on Windows); no OpenSSL.
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+reqwest = { version = "0.12", features = ["blocking", "json"] }
+# Same URL parser reqwest uses (already in the tree transitively): the loopback guard parses
+# the endpoint with `url` so its host EXACTLY matches the host reqwest will connect to. A
+# hand-rolled parser diverged from WHATWG (e.g. backslash handling), which is a loopback-bypass
+# class of bug for the only outbound surface — so we depend on the real parser here.
+url = "2"
+keyring = { version = "3", features = ["windows-native"] }
+
+[target.'cfg(windows)'.dev-dependencies]
+windows-sys = { workspace = true, features = ["Win32_Foundation", "Win32_NetworkManagement_IpHelper"] }
