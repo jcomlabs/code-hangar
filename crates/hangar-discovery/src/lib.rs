@@ -2624,13 +2624,12 @@ pub fn openclaw_session_transcript_window(
             session_id,
             "SELECT event_json FROM transcript_events WHERE session_id = ?1 ORDER BY seq DESC LIMIT ?2",
         )
-    } else if let Some(session_id) = fragment.strip_prefix("openclaw-replay=") {
+    } else {
+        let session_id = fragment.strip_prefix("openclaw-replay=")?;
         (
             session_id,
             "SELECT update_json FROM acp_replay_events WHERE session_id = ?1 ORDER BY seq DESC LIMIT ?2",
         )
-    } else {
-        return None;
     };
     if session_id.trim().is_empty() {
         return None;
