@@ -708,10 +708,7 @@ impl ConnectedAppServer {
         }
 
         // A request carries an `id`; a notification omits it and is never answered.
-        let id = match message.get("id") {
-            Some(id) => id.clone(),
-            None => return None,
-        };
+        let id = message.get("id")?.clone();
         let method = message
             .get("method")
             .and_then(Value::as_str)
