@@ -1,0 +1,19 @@
+{
+  "sets": [
+    {
+      "id": "markdown-project",
+      "name": "Fixture Markdown Project",
+      "purpose": ["navigation", "markdown-preview", "context-priority", "document-fts"]
+    },
+    {
+      "id": "sensitive-project",
+      "name": "Fixture Sensitive Project",
+      "purpose": ["preview-blocked", "fts-exclusion", "protected-zone-behaviour"]
+    },
+    {
+      "id": "git-like-project",
+      "name": "Fixture Git-like Project",
+      "purpose": ["future-local-git-reader-fixture-only"]
+    }
+  ]
+}

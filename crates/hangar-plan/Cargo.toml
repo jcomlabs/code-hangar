@@ -1,0 +1,21 @@
+[package]
+name = "hangar-plan"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+mutation = []
+agent_automation = []
+
+[dependencies]
+blake3.workspace = true
+chrono.workspace = true
+hangar-accounting = { path = "../hangar-accounting" }
+hangar-core = { path = "../hangar-core" }
+rusqlite.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true

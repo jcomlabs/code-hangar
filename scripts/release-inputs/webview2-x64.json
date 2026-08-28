@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "filename": "MicrosoftEdgeWebView2RuntimeInstallerX64.exe",
+  "length": 203654864,
+  "sha256": "3A08103BED8A3D9AEFDFC9AC10A672EA69605163F2DCB08D76CFD3E0444511C9",
+  "fileVersion": "1.3.241.15",
+  "peMachine": "014C",
+  "signerSubject": "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+  "signerThumbprint": "4028CAD637509D4744B17EC5B42AED8D7A31E6AF",
+  "signerIssuer": "CN=Microsoft Code Signing PCA 2024, O=Microsoft Corporation, C=US",
+  "timestampThumbprint": "536FE6CA38F0230817E5873C3911706E496C5E0E"
+}

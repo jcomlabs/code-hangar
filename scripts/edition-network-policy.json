@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "documentType": "codehangar/edition-network-policy/1",
+  "local": {
+    "feature": "mutation",
+    "forbiddenPackages": [
+      "hangar-agent",
+      "hangar-ai",
+      "hangar-appconfig",
+      "hangar-mcp",
+      "code-hangar-mcp",
+      "reqwest",
+      "keyring"
+    ]
+  },
+  "connector": {
+    "feature": "agent_automation",
+    "outboundCrate": {
+      "name": "hangar-ai",
+      "manifest": "crates/hangar-ai/Cargo.toml",
+      "runtimeSource": "crates/hangar-ai/src/lib.rs",
+      "orchestrationSource": "crates/hangar-api/src/ai_assist.rs",
+      "apiManifest": "crates/hangar-api/Cargo.toml",
+      "apiDependencyDeclaration": "hangar-ai = { path = \"../hangar-ai\", optional = true }",
+      "apiFeatureMember": "dep:hangar-ai",
+      "directDependencies": {
+        "reqwest": {
+          "version": "0.12",
+          "defaultFeatures": false,
+          "features": ["blocking", "json", "native-tls"]
+        },
+        "url": {
+          "version": "2"
+        },
+        "keyring": {
+          "version": "3",
+          "defaultFeatures": false,
+          "features": ["windows-native"]
+        }
+      }
+    },
+    "tauriCommandSource": "apps/desktop/src-tauri/src/main.rs",
+    "frontendIpcCommands": [
+      "ai_explain_preview",
+      "ai_send_disclosure",
+      "ai_read_stream",
+      "ai_walkthrough_preview",
+      "ai_walkthrough_file",
+      "ai_walkthrough_disclosure",
+      "ai_follow_up_preview",
+      "ai_follow_up",
+      "ai_follow_up_disclosure",
+      "ai_glossary_state",
+      "set_ai_glossary_enabled",
+      "ai_glossary_record",
+      "ai_annotations_for_node",
+      "ai_annotation_add",
+      "ai_annotation_delete",
+      "ai_change_set_preview",
+      "ai_narrate_session_changes",
+      "ai_change_disclosure",
+      "ai_explain_change",
+      "ai_review_change_set",
+      "ai_rewrite_text",
+      "ai_rewrite_disclosure",
+      "apply_ai_suggestion",
+      "ai_edit_sessions_for_node",
+      "undo_ai_edit_session",
+      "ai_summarize_project",
+      "ai_summarize_project_preview",
+      "ai_summarize_project_disclosure",
+      "ai_safe_manage_context_candidates",
+      "ai_safe_manage_advisory_disclosure",
+      "ai_safe_manage_advisory",
+      "ai_safe_manage_advisory_receipts",
+      "ai_key_set",
+      "ai_key_status",
+      "ai_key_clear",
+      "ai_provider_get",
+      "ai_provider_set",
+      "ai_provider_test_disclosure",
+      "ai_provider_test",
+      "ai_provider_models_disclosure",
+      "ai_provider_models",
+      "ai_local_discover",
+      "ai_usage_status",
+      "ai_usage_set_soft_cap",
+      "ai_usage_reset"
+    ],
+    "frontendOnlyFiles": [
+      "apps/desktop/src/connectorTypes.ts",
+      "apps/desktop/src/connectorApi.ts",
+      "apps/desktop/src/aiTasks.ts",
+      "apps/desktop/src/views/AiAssist.tsx",
+      "apps/desktop/src/views/AiLearningTools.tsx",
+      "apps/desktop/src/views/AiUsageMeter.tsx",
+      "apps/desktop/src/views/ProjectAiSummary.tsx",
+      "apps/desktop/src/views/ConnectorEditionLayer.tsx",
+      "apps/desktop/src/views/ConnectorEditionLayer.css",
+      "apps/desktop/src/views/ConnectorCommentPresentation.tsx",
+      "apps/desktop/src/views/ConnectorSettingsViews.tsx",
+      "apps/desktop/src/views/RecapAiLayer.tsx",
+      "apps/desktop/src/views/RewriteDialog.tsx",
+      "apps/desktop/src/views/ai-learning.css",
+      "apps/desktop/src/views/recap-ai.css",
+      "apps/desktop/src/__tests__/ai-learning-tools.test.ts",
+      "apps/desktop/src/__tests__/ai-review-lens.test.ts",
+      "apps/desktop/src/__tests__/ai-tasks-stream.test.ts",
+      "apps/desktop/src/__tests__/ai-usage-meter.test.ts",
+      "apps/desktop/src/__tests__/connected-app-security-contract.test.ts",
+      "apps/desktop/src/__tests__/local-ai-ux.test.ts"
+    ]
+  },
+  "alwaysForbidden": [
+    "telemetry",
+    "updater",
+    "remote-git",
+    "implicit-network",
+    "tauri-http-plugin",
+    "raw-socket-production"
+  ]
+}

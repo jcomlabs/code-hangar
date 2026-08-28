@@ -1,0 +1,22 @@
+[advisories]
+ignore = []
+
+[bans]
+multiple-versions = "warn"
+deny = [
+  { name = "reqwest" },
+  { name = "hyper" },
+  { name = "native-tls" },
+  { name = "openssl" },
+  { name = "ureq" },
+  { name = "isahc" },
+  { name = "surf" },
+  { name = "sentry" }
+]
+
+[licenses]
+allow = ["Apache-2.0", "MIT", "BSD-2-Clause", "BSD-3-Clause", "ISC", "Unicode-DFS-2016", "Zlib"]
+
+[sources]
+unknown-registry = "warn"
+unknown-git = "deny"

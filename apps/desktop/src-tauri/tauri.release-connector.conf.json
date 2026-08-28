@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "bundle": {
+    "externalBin": [
+      "binaries/code-hangar-elevated",
+      "binaries/code-hangar-mcp"
+    ],
+    "resources": {
+      "binaries/code-hangar-release-manifest.json": "code-hangar-release-manifest.json"
+    }
+  }
+}

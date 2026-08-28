@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Code Hangar P1 UI E2E",
+  "version": "0.1.3",
+  "identifier": "local.codehangar.p1-ui-e2e",
+  "build": {
+    "frontendDist": "../../dist-p1-e2e"
+  },
+  "app": {
+    "windows": [],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' asset: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": false,
+    "icon": ["../icons/icon.ico"]
+  }
+}

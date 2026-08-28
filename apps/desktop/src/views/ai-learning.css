@@ -1,0 +1,276 @@
+.ai-learning-tools {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.ai-learning-tools > details {
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-learning-tools > details:last-child {
+  border-bottom: 0;
+}
+
+.ai-learning-tools summary {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 14px;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 7px 2px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  list-style: none;
+}
+
+.ai-learning-tools summary::-webkit-details-marker {
+  display: none;
+}
+
+.ai-learning-tools summary > svg:last-child {
+  color: var(--muted);
+  transition: transform 120ms ease;
+}
+
+.ai-learning-tools details[open] summary > svg:last-child {
+  transform: rotate(180deg);
+}
+
+.ai-learning-body {
+  display: grid;
+  gap: 9px;
+  padding: 3px 2px 11px 23px;
+}
+
+.ai-section-list {
+  display: grid;
+  max-height: 210px;
+  overflow-y: auto;
+  border-block: 1px solid var(--line);
+}
+
+.ai-section-list label {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  gap: 6px;
+  padding: 7px 3px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.ai-section-list label:last-child {
+  border-bottom: 0;
+}
+
+.ai-section-list span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ai-section-list strong {
+  overflow-wrap: anywhere;
+  font-size: 12px;
+  font-weight: 620;
+}
+
+.ai-section-list small,
+.ai-follow-answer > small,
+.ai-annotation-list small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.ai-learning-cost {
+  padding: 6px 7px;
+  border-left: 2px solid var(--accent);
+  background: var(--surface-muted, rgba(127, 127, 127, 0.08));
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.ai-learning-answer,
+.ai-follow-answer > div {
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ai-learning-answer.markdown-preview,
+.ai-follow-answer > .markdown-preview {
+  white-space: normal;
+}
+
+.ai-follow-answer {
+  display: grid;
+  gap: 4px;
+  padding-block: 7px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-learning-field {
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ai-learning-field select,
+.ai-learning-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 7px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 400;
+  resize: vertical;
+}
+
+.ai-learning-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ai-learning-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text);
+  font-size: 12px;
+}
+
+.ai-glossary-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.ai-glossary-suggestions span {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+  font-size: 11px;
+}
+
+.ai-glossary-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.ai-glossary-list > div {
+  display: grid;
+  gap: 3px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-glossary-list dt {
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.ai-glossary-list dd {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.ai-annotation-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.ai-annotation-list li {
+  position: relative;
+  display: grid;
+  gap: 5px;
+  padding: 8px 30px 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.ai-annotation-list li > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.ai-annotation-list p {
+  margin: 0;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.ai-annotation-list li > .icon-button {
+  position: absolute;
+  top: 5px;
+  right: 0;
+}
+
+.ai-annotation-delete {
+  display: grid !important;
+  gap: 7px !important;
+  margin-right: -30px;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+}
+
+.ai-annotation-delete label {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.ai-annotation-delete > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.ai-anchor-state {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ai-anchor-state.current,
+.ai-anchor-state.moved {
+  color: var(--success, #2e8b57);
+}
+
+.ai-anchor-state.ambiguous,
+.ai-anchor-state.stale {
+  color: var(--warning, #b47718);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-learning-tools summary > svg:last-child {
+    transition: none;
+  }
+}

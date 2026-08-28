@@ -1,0 +1,55 @@
+[package]
+name = "hangar-mutation"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = []
+# All executable content is gated behind `mutation`. Under `core` this crate has
+# no dependencies and no code, so the strict core lane links no executor.
+mutation = [
+  "dep:rusqlite",
+  "dep:blake3",
+  "dep:thiserror",
+  "dep:serde",
+  "dep:serde_json",
+  "dep:sha2",
+  "dep:chrono",
+  "dep:hangar-fs",
+  "dep:hangar-protect",
+  "dep:windows-sys",
+]
+agent_automation = []
+
+[dependencies]
+hangar-fs = { path = "../hangar-fs", optional = true }
+hangar-protect = { path = "../hangar-protect", optional = true }
+rusqlite = { workspace = true, optional = true }
+blake3 = { workspace = true, optional = true }
+thiserror = { workspace = true, optional = true }
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true, optional = true }
+sha2 = { version = "0.10", optional = true }
+chrono = { workspace = true, optional = true }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true, optional = true, features = ["Win32_Foundation", "Win32_Security", "Win32_Security_Authorization", "Win32_Security_Cryptography", "Win32_Security_WinTrust", "Win32_Storage_FileSystem", "Win32_System_IO", "Win32_System_Pipes", "Win32_System_Registry", "Win32_System_RemoteDesktop", "Win32_System_SystemServices", "Win32_System_Threading", "Win32_System_WindowsProgramming", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
+
+[[bin]]
+name = "code-hangar-elevated"
+path = "src/bin/code-hangar-elevated.rs"
+required-features = ["mutation"]
+test = false
+bench = false
+
+[[bin]]
+name = "code-hangar-release-verify"
+path = "src/bin/code-hangar-release-verify.rs"
+required-features = ["mutation"]
+test = false
+bench = false
+
+[dev-dependencies]
+tempfile = { workspace = true }

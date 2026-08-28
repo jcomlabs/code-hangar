@@ -1,0 +1,52 @@
+[package]
+name = "code-hangar-desktop"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[features]
+default = ["core"]
+core = [
+  "hangar-api/core",
+  "hangar-core/core",
+]
+mutation = [
+  "hangar-api/mutation",
+  "hangar-core/mutation",
+]
+agent_automation = [
+  "mutation",
+  "hangar-api/agent_automation",
+  "hangar-core/agent_automation",
+]
+# Native UI journey used only by the local P1 end-to-end gate. The explicit
+# custom protocol keeps the test on embedded assets: no Vite HTTP server and no
+# outbound-capable surface is introduced into the normal Local build.
+p1_ui_e2e = [
+  "mutation",
+  "dep:blake3",
+  "tauri/custom-protocol",
+]
+
+[[bin]]
+name = "p1_ui_e2e"
+path = "src/bin/p1_ui_e2e.rs"
+required-features = ["p1_ui_e2e"]
+
+[build-dependencies]
+tauri-build.workspace = true
+
+[dependencies]
+blake3 = { workspace = true, optional = true }
+hangar-api = { path = "../../../crates/hangar-api", default-features = false }
+hangar-core = { path = "../../../crates/hangar-core", default-features = false }
+hangar-fs = { path = "../../../crates/hangar-fs", default-features = false }
+hangar-security = { path = "../../../crates/hangar-security", default-features = false }
+serde.workspace = true
+serde_json.workspace = true
+tauri = { workspace = true, features = ["tray-icon"] }
+tauri-plugin-dialog.workspace = true
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { workspace = true, features = ["Win32_Foundation", "Win32_Storage_FileSystem", "Win32_System_Threading", "Win32_System_WindowsProgramming", "Win32_UI_Shell", "Win32_UI_WindowsAndMessaging"] }
+winreg = "0.55"

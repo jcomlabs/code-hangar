@@ -1,0 +1,19 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#15786e"/>
+      <stop offset="1" stop-color="#0e564f"/>
+    </linearGradient>
+  </defs>
+  <!-- rounded badge -->
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+  <!-- hangar frame (arched building) -->
+  <path d="M232 744 L232 540 A280 280 0 0 1 792 540 L792 744 Z" fill="#ffffff"/>
+  <!-- open doorway -->
+  <path d="M324 744 L324 566 A188 188 0 0 1 700 566 L700 744 Z" fill="#0e564f"/>
+  <!-- ground -->
+  <rect x="196" y="744" width="632" height="52" rx="22" fill="#ffffff"/>
+  <!-- stored project crate inside the hangar -->
+  <rect x="452" y="620" width="120" height="124" rx="16" fill="#ffffff"/>
+  <rect x="452" y="620" width="120" height="42" rx="16" fill="#bfe6df"/>
+</svg>

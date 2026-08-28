@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Code Hangar AI Connector",
+  "build": {
+    "beforeDevCommand": "npm run dev:connector",
+    "beforeBuildCommand": "npm run build:connector"
+  },
+  "bundle": {
+    "externalBin": ["binaries/code-hangar-mcp"],
+    "shortDescription": "Local-first project catalog with optional local AI-app connections.",
+    "longDescription": "Code Hangar inventories local AI coding projects and sessions, encrypts its catalog at rest, and adds explicitly enabled AI-app integration. Claude, Codex and Cursor connect through a separate local MCP stdio process, app configuration and named pipes. AI Assist starts Off and permits only an explicit, reviewed request to the user-selected loopback or HTTPS provider through the feature-gated hangar-ai client. There is no telemetry, updater, remote Git or implicit/background network; project and action scopes remain explicit, and mutation gates stay in Code Hangar."
+  }
+}
